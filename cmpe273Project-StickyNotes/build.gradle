@@ -18,12 +18,12 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'stickynotes'
+    baseName = 'stickynote'
     version =  '0.1.0'
 }
 
 bootRepackage {
-    mainClass = 'stickynotes.Application'
+    mainClass = 'stickynote.Application'
 }
 
 repositories {
