@@ -77,7 +77,7 @@ public class Application {
 	   	System.out.println("Welcome to Sticky notes");
 	  // model.addAttribute("createuser",new CreateUser());
 	   
-		
+	   	model.addAttribute("getUser", new GetUser());
 	   	return "index";
 	 }
 	 
@@ -204,13 +204,13 @@ public class Application {
 	        
 	 */
 	 
-	 @RequestMapping(value ="/users/{email}", method = RequestMethod.GET)
+	 @RequestMapping(value ="/users/email", method = RequestMethod.GET)
 	 @ResponseBody
-	 public ResponseEntity<Object> getUser(@PathVariable String email, @ModelAttribute GetUser getuser) throws UnknownHostException
+	 public ResponseEntity<Object> getUser(@ModelAttribute GetUser getuser) throws UnknownHostException
 	 {
 	    coll =  DBConnection.getConnection();
-	    BasicDBObject query = new BasicDBObject("email", email);
-	    System.out.println("email entered is "+email);
+	    BasicDBObject query = new BasicDBObject("email", getuser.email);
+	    System.out.println("email entered is "+getuser.email);
 	    DBCursor cursor = coll.find(query);
 	    cursor=dbcursor;
 	    try {
@@ -220,7 +220,7 @@ public class Application {
 	    			return new ResponseEntity<Object>(getUser, HttpStatus.OK);
 	    		}
 	    		else{
-	    		return new ResponseEntity<Object>(new Error(email), HttpStatus.BAD_REQUEST);
+	    		return new ResponseEntity<Object>(new Error(getuser.email), HttpStatus.BAD_REQUEST);
 	    		}
 	    	}
 	    finally{cursor.close();}
