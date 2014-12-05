@@ -91,6 +91,26 @@ public class Application {
 	
 	   	return "register";
 	 }
+ 
+ @RequestMapping(value = "/empty", method = RequestMethod.GET)
+ 
+ public String emptyForm(Model model)
+ {
+   	System.out.println("In register method");
+   model.addAttribute("createuser",new CreateUser());
+
+   	return "empty";
+ }
+ 
+ @RequestMapping(value = "/homepage", method = RequestMethod.GET)
+ 
+ public String homepageForm(Model model)
+ {
+   	System.out.println("In register method");
+   model.addAttribute("createuser",new CreateUser());
+
+   	return "homepage";
+ }
 	 
 //	 @RequestMapping(value = "/postm", method = RequestMethod.POST)
 //	 
