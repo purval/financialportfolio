@@ -1,0 +1,60 @@
+package stickynote;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CreateNote {
+
+	String file_name="";
+	String file_title="";
+	String created_at="";
+	
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public String getFile_title() {
+		return file_title;
+	}
+	public void setFile_title(String file_title) {
+		this.file_title = file_title;
+	}
+	public String getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+	
+	public String createFile(String userid)
+	{
+		try{
+		File fileDir = new File("./UserNote/"+userid);
+		if(!(fileDir.exists()))
+		{
+			fileDir.mkdir();
+		}
+		File file = new File("./UserNote/"+userid+"/"+file_name);
+		if(!(file.exists()))
+		{
+		file.createNewFile();
+		FileWriter fw = new FileWriter(file.getAbsoluteFile());
+		BufferedWriter bw = new BufferedWriter(fw);
+		bw.write("Title: "+file_title);
+		bw.close();
+		return "created";
+		}
+		else
+		{return "file already exist";}
+		}
+		catch(IOException e)
+		{
+		
+		}
+	}
+	
+}
