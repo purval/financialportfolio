@@ -8,8 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , yahooFinance = require('yahoo-finance')
   , http = require('http')
-  , path = require('path');
-
+  , path = require('path')
+  , finance = require('./routes/finance');
 var app = express();
 
 // all environments
@@ -45,4 +45,5 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-app.get('/quotes/stocksymbol/:stocksymbol',user.getQuotes);
+app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
+//app.get('/quotes/timeperiod/:monthly' ,finance.getMonthly);
