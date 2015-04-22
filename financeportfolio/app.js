@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 /**
  * Module dependencies.
@@ -49,7 +49,7 @@ http.createServer(app).listen(app.get('port'), function(){
 app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
 app.get('/quotes/monthlyQuotes/:stocksymbol' ,finance.getMonthlyQuotes);
 app.get('/quotes/dailyQuotes/:stocksymbol' ,finance.getDailyQuotes);
-=======
+
 
 /**
  * Module dependencies.
@@ -111,4 +111,4 @@ wsServer.on('request', function(request) {
     connection.on('close', function(connection) {     
     });
 });
->>>>>>> origin/master
+
