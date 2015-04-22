@@ -5,7 +5,77 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <div class="col-md-4">
+        <div id="custom-search-input">
+            <div class="input-group col-md-12" style="align:center">
+                <input id="cName" type="text" class="form-control input-lg" placeholder="Search Stocks,Check price" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
   </body>
+ 	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+  <script>
+
+  	$( document ).ready(function() {
+		/*var timer = setInterval(function(){ 
+			var socket = new WebSocket('ws://localhost:3000');
+		    socket.onopen = function () {	
+		        socket.send('hello from the client');
+		    };
+
+		    socket.onmessage = function (message) {
+		        console.log(message);
+		    };
+
+		    socket.onerror = function (error) {
+		        console.log('WebSocket error: ' + error);
+		    };
+
+		    socket.onclose = function () {
+		       	clearInterval(timer);
+		    };
+		}, 3000);*/
+
+  		$("#cName").autocomplete({
+			delay: 500,
+			minLength: 3,
+			source: function(request, response) {
+				var autocompleteQuery = {
+			    	query : $("#cName").val()
+	    	    };
+	    	    console.log(autocompleteQuery);
+				$.ajax({
+		    		  type: "GET",
+		              url: "/autocompletelist",
+		              contentType: "application/json; charset=UTF-8",
+		              data: JSON.stringify(autocompleteQuery),
+		              crossDomain : true,
+		              success: function( d ) {
+		              	  console.log(d);
+		            	  response(d);
+		              }
+		    	 });
+			},
+			focus: function(event, ui) {
+				event.preventDefault();
+			},
+			select: function(event, ui) {
+				event.preventDefault();
+				window.location = '/getstock/'+ui.item.value;
+			}
+		});
+	});
+	
+  </script>
 </html>
