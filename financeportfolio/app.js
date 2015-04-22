@@ -35,6 +35,7 @@ app.get('/users', user.list);
 app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
 app.get('/quotes/dailyQuotes/:stocksymbol',finance.getDailyQuotes);
 app.get('/quotes/monthlyQuotes/:stocksymbol' ,finance.getMonthlyQuotes);
+app.get('/quotes/weeklyQuotes/:stocksymbol' ,finance.getWeeklyQuotes);
 app.get('/homepage',liveprice.gethomepage);
 app.get('/autocompletelist', liveprice.searchsymbol);
 app.get('/getstock/:stocksymbol', liveprice.getstockprice);
