@@ -6,8 +6,7 @@ exports.getQuotes = function(req, res) {
 	// var stockSymbol = req.body.stocksymbol;
 	var stockSymbol = req.param("stocksymbol");
 	// console.log(stockSymbol);
-	var query = "select * from yahoo.finance.quotes where symbol = '"
-			+ stockSymbol + "'";
+	var query = "select * from yahoo.finance.quotes where symbol = '"+ stockSymbol + "'";
 	yql.exec(query, function(error, response) {
 		if (error) {
 			console.log('Ut oh! demo has messed up:', error);
@@ -37,9 +36,7 @@ exports.getDailyQuotes = function(req, res) {
 	today = yy + '-' + mm + '-' + dd;
 	var start = yy - 1 + '-' + mm + '-' + dd;
 	console.log(today + " " + start);
-	var query = "select * from yahoo.finance.historicaldata where symbol = '"
-			+ stockSymbol + "' and startDate = '" + start + "' and endDate ='"
-			+ today + "'";
+	var query = "select * from yahoo.finance.historicaldata where symbol = '"+ stockSymbol + "' and startDate = '" + start + "' and endDate ='"+ today + "'";
 	yql.exec(query, function(error, response) {
 		var responseArray = [];
 		var sum = 0;
