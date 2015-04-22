@@ -46,4 +46,5 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
-app.get('/quotes/timeperiod/:stocksymbol' ,finance.getMonthlyQuotes);
+app.get('/quotes/monthlyQuotes/:stocksymbol' ,finance.getMonthlyQuotes);
+app.get('/quotes/dailyQuotes/:stocksymbol' ,finance.getDailyQuotes);
