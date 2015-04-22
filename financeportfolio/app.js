@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 /**
@@ -51,6 +52,8 @@ app.get('/quotes/monthlyQuotes/:stocksymbol' ,finance.getMonthlyQuotes);
 app.get('/quotes/dailyQuotes/:stocksymbol' ,finance.getDailyQuotes);
 
 
+=======
+>>>>>>> origin/master
 /**
  * Module dependencies.
  */
@@ -111,4 +114,7 @@ wsServer.on('request', function(request) {
     connection.on('close', function(connection) {     
     });
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
