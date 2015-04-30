@@ -39,7 +39,7 @@ app.get('/quotes/weeklyQuotes/:stocksymbol' ,finance.getWeeklyQuotes);
 app.get('/homepage',liveprice.gethomepage);
 app.get('/autocompletelist', liveprice.searchsymbol);
 app.get('/getstock/:stocksymbol', liveprice.getstockprice);
-
+app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
 var server = http.createServer(app).listen(app.get('port'), function(){
 	  console.log('Express server listening on port ' + app.get('port'));
 	});
