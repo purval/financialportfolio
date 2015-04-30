@@ -138,12 +138,22 @@ $(document).ready(function(){
 			},
 			select: function(event, ui) {
 				event.preventDefault();
+				
 				var urlStr = '/todaysdata/'+ui.item.value;
+				$("#cName").val("");
+				$('#containerr').html(" ");
+				var html = "";
+				html += "<div id='progess-sec' class='progress'>";
+				html += "<div class='progress-bar progress-bar-striped active' role='progressbar'";
+				html += " aria-valuenow='65' aria-valuemin='0' aria-valuemax='100' style='width:100%'>";
+				html += " <center>Loading</center> </div> </div>";
+				  
+				$('#containerr').append(html);
+								
 				$.getJSON(urlStr, function (data) {
-
+					$('#progess-sec').remove();
 			        // Create the chart
 			        $('#containerr').highcharts('StockChart', {
-
 
 			            rangeSelector : {
 			                selected : 1
