@@ -40,18 +40,17 @@ app.get('/homepage',liveprice.gethomepage);
 app.post('/autocompletelist', liveprice.searchsymbol);
 app.get('/getstock/:stocksymbol', liveprice.getstockprice);
 app.get('/twitterfeeds', feeds.selectedtwitterfeeds);
+app.get('/gainers', liveprice.getGainers);
+app.get('/losers', liveprice.getLosers);
+app.post('/dataloader', dataloader.loadData);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-	  console.log('Express server listening on port ' + app.get('port'));
-	});
+  console.log('Express server listening on port ' + app.get('port'));
+});
 
 var wsServer = new WebSocketServer({
     httpServer: server
 });
-
-//twitter feeds 
-//live price
-//ticker
 
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
