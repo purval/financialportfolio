@@ -48,13 +48,20 @@ app.get('/quotes/weeklyQuotes/:stocksymbol' ,finance.getWeeklyQuotes);
 app.get('/homepage',liveprice.gethomepage);
 app.post('/autocompletelist', liveprice.searchsymbol);
 app.get('/getstock/:stocksymbol', liveprice.getstockprice);
+<<<<<<< HEAD
+app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
+=======
 app.get('/twitterfeeds', feeds.selectedtwitterfeeds);
 app.get('/gainers', liveprice.getGainers);
 app.get('/losers', liveprice.getLosers);
 app.post('/dataloader', dataloader.loadData);
 app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
 
+<<<<<<< HEAD
 //websockets
+=======
+>>>>>>> origin/master
+>>>>>>> origin
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

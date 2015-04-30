@@ -1,6 +1,6 @@
 var dbConn = require('../dbconnectivity/dbConnection');
 var client = dbConn.getRedisConnection();
-
+var xyz = require('http');
 exports.gethomepage = function(req, res){
   res.render('homepage');
 };
@@ -23,6 +23,26 @@ exports.getstockprice = function(req, res){
   console.log(req.params.stocksymbol);
 };
 
+<<<<<<< HEAD
+exports.todaysdata = function(req,res){
+	var request = require('request');
+	var parser= require('babyparse');
+	var stockSymbol = req.param("stocksymbol");
+	var d = new Date();
+	var m = d.getMonth()+1;
+	var y = d.getFullYear();
+	var n = d.getDate();
+	var date = y.toString() + '0' +m.toString() + n.toString();
+	request("http://hopey.netfonds.no/tradedump.php?date='"+ date + "'&paper='"+ stockSymbol + "'+.O&csv_format=txt", function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    var parsed= parser.parse(body);
+	    console.log(parsed.data);
+	    res.send(parsed.data);
+	  }else{
+		  console.log(error);
+	  }
+	})
+=======
 exports.getGainers = function(req, res){
 	var request = require('request');
 	request('https://ca.finance.yahoo.com/gainers?e=O', function (error, response, body) {
@@ -57,6 +77,7 @@ exports.getLosers = function(req, res){
 		  }
 	  }
 	});
+<<<<<<< HEAD
 };
 
 exports.todaysdata = function(req,res){
@@ -85,4 +106,7 @@ exports.todaysdata = function(req,res){
 		  console.log(error);
 	  }
 	});
+=======
+>>>>>>> origin/master
+>>>>>>> origin
 };
