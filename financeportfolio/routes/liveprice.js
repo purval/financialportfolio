@@ -40,6 +40,23 @@ exports.getGainers = function(req, res){
 	});
 };
 
+exports.getGainers = function(req, res){
+	var request = require('request');
+	request('https://ca.finance.yahoo.com/gainers?e=O', function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+		  var temp = body.toString().split('<div');
+		  var response = "<div";
+		  for(i=0; i<temp.length; i++){
+			  var patt = new RegExp(/(^ id="yfitp")/);
+			  if(patt.test(temp[i])){
+				  response = response + temp[i];
+				  res.send(response);
+			  }
+		  }
+	  }
+	});
+};
+
 exports.getLosers = function(req, res){
 	var request = require('request');
 	request('https://ca.finance.yahoo.com/losers?e=to', function (error, response, body) {
