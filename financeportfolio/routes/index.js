@@ -22,3 +22,7 @@ exports.leaders = function(req, res){
 exports.indexold = function(req, res){
   res.render('indexold');
 };
+
+exports.advisingpage = function(req, res){
+  res.render('financialadvisor');
+};

@@ -40,7 +40,7 @@ app.get('/users', user.list);
 app.get('/stats',routes.stats);
 app.get('/leader',routes.leaders);
 app.get('/indexold',routes.indexold);
-
+app.get('/financialadvisor',routes.advisingpage);
 //web services
 app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
 app.get('/quotes/dailyQuotes/:stocksymbol',finance.getDailyQuotes);
