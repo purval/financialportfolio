@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div class="col-md-4">
+        <div id="custom-search-input">
+            <div class="input-group col-md-12" style="align:center">
+                <input id="cName" type="text" class="form-control input-lg" placeholder="Search Stocks,Check price" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="tweets" class="col-md-4">
+    	
+    </div>
+
+  </body>
+ 	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+  <script>
+
+  	$( document ).ready(function() {
+  		$.ajax({
+    		  type: "GET",
+              url: "/twitterfeeds",
+              contentType: "application/json; charset=UTF-8",
+              crossDomain : true,
+              success: function( d ) {
+              	  for(i=0;i<d.length;i++){           	  	
+				    	 var html = "";
+	
+				          html += "<div class='rows'>";
+				            html += "<img src='"+d[i].profile_url+"' alt='' class='img-circle'>";
+				            html += "<div>"+d[i].text+"</div>";
+				            html += "<div>"+d[i].created+"</div>";
+				          html += "</div>";
+				          $('#tweets').append(html);
+              	  }
+              	  Draggable.create("#tweets", {type:"scrollTop", edgeResistance:0, lockAxis:true});
+              }
+    	});
+    	 
+  		var socket = new WebSocket('ws://localhost:3000');
+		var timer = setInterval(function(){ 
+		    socket.onopen = function () {
+		        var optionObj = {
+		          option : "twitterfeeds"
+		        };	
+		        //socket.send(JSON.stringify(optionObj));
+		    };
+
+		    socket.onmessage = function (message) {
+		        console.log(JSON.parse(JSON.stringify(message)));
+		    };
+
+		    socket.onerror = function (error) {
+		        console.log('WebSocket error: ' + error);
+		    };
+
+		    socket.onclose = function () {
+		       	clearInterval(timer);
+		    };
+		}, 3000);
+
+  		$("#cName").autocomplete({
+			delay: 500,
+			minLength: 3,
+			source: function(request, response) {
+				var autocompleteQuery = {
+			    	query : $("#cName").val()
+	    	    };
+	    	    console.log(autocompleteQuery);
+				$.ajax({
+		    		  type: "POST",
+		              url: "/autocompletelist",
+		              contentType: "application/json; charset=UTF-8",
+		              data: JSON.stringify(autocompleteQuery),
+		              crossDomain : true,
+		              success: function( d ) {
+		              	  console.log(d);
+		            	  response(d);
+		              }
+		    	 });
+			},
+			focus: function(event, ui) {
+				event.preventDefault();
+			},
+			select: function(event, ui) {
+				event.preventDefault();
+				window.location = '/getstock/'+ui.item.value;
+			}
+		});
+	});
+	
+  </script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenLite.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/utils/Draggable.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/plugins/CSSPlugin.min.js"></script>
+  
+</html>
