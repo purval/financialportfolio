@@ -51,6 +51,27 @@ $(document).ready(function(){
 	      }
 	});
 	
+	
+	$.ajax({
+		  type: "GET",
+       url: "/twitterfeeds",
+       contentType: "application/json; charset=UTF-8",
+       crossDomain : true,
+       success: function( d ) {
+       	  for(i=0;i<d.length;i++){           	  	
+			    	 var html = "";
+
+			          html += "<div class='rows'>";
+			            html += "<img src='"+d[i].profile_url+"' alt='' class='img-circle'>";
+			            html += "<div>"+d[i].text+"</div>";
+			            html += "<div>"+d[i].created+"</div>";
+			          html += "</div>";
+			          $('#tweets').append(html);
+       	  }
+       	  Draggable.create("#tweets", {type:"scrollTop", edgeResistance:0, lockAxis:true});
+       }
+	});
+	
 	 $.ajax({
       type: "GET",
       url: "/losers",
