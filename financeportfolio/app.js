@@ -7,6 +7,7 @@ var express = require('express')
   , user = require('./routes/user')
   , liveprice = require('./routes/liveprice')
   , feeds = require('./routes/twitterfeeds')
+  , dataloader = require('./routes/dataloader')
   , http = require('http')
   , path = require('path')
   , finance = require('./routes/finance');
@@ -31,8 +32,15 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//views
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/home', routes.home);
+app.get('/users', user.list);
+app.get('/stats',routes.stats);
+app.get('/leader',routes.leaders);
+
+//web services
 app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
 app.get('/quotes/dailyQuotes/:stocksymbol',finance.getDailyQuotes);
 app.get('/quotes/monthlyQuotes/:stocksymbol' ,finance.getMonthlyQuotes);
@@ -47,8 +55,13 @@ app.get('/twitterfeeds', feeds.selectedtwitterfeeds);
 app.get('/gainers', liveprice.getGainers);
 app.get('/losers', liveprice.getLosers);
 app.post('/dataloader', dataloader.loadData);
+app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
 
+<<<<<<< HEAD
+//websockets
+=======
 >>>>>>> origin/master
+>>>>>>> origin
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

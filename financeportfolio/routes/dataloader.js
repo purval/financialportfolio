@@ -2,7 +2,7 @@
  * loads symbol-stock name data into redis
  */
 var basicCSV = require("basic-csv");
-var dbConn = require('./dbconnectivity/dbConnection');
+var dbConn = require('../dbconnectivity/dbConnection');
 var client = dbConn.getRedisConnection();
 
 exports.loadData = function(req, res){

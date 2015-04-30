@@ -6,23 +6,6 @@ function getRedisConnection(){
 	return client;
 }
 
-/*var query = "insert into users "
-	+ "(firstname,lastname,email,password,user_type,lastLoggedIn)"
-	+ "values (?,?,?,?,?,now());";
-pool.getConnection(function(err, connection) {
-connection.query(query, [ firstName, lastName, email, password,userType],
-		function(regerr, rows) {
-
-			if (regerr) {
-				pool.releaseConnection(connection);
-				console.log("Error regiter user : " + regerr);
-			} else {
-				pool.releaseConnection(connection);
-				callback(regerr, rows);
-			}
-		});
-});*/
-
 exports.getPoolInstance = function(){
 	
 	if(pool != null){
