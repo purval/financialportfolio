@@ -18,3 +18,7 @@ exports.stats = function(req, res){
 exports.leaders = function(req, res){
   res.render('leader');
 };
+
+exports.indexold = function(req, res){
+  res.render('indexold');
+};

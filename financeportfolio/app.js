@@ -39,6 +39,7 @@ app.get('/home', routes.home);
 app.get('/users', user.list);
 app.get('/stats',routes.stats);
 app.get('/leader',routes.leaders);
+app.get('/indexold',routes.indexold);
 
 //web services
 app.get('/quotes/stocksymbol/:stocksymbol',finance.getQuotes);
@@ -48,20 +49,13 @@ app.get('/quotes/weeklyQuotes/:stocksymbol' ,finance.getWeeklyQuotes);
 app.get('/homepage',liveprice.gethomepage);
 app.post('/autocompletelist', liveprice.searchsymbol);
 app.get('/getstock/:stocksymbol', liveprice.getstockprice);
-<<<<<<< HEAD
 app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
-=======
 app.get('/twitterfeeds', feeds.selectedtwitterfeeds);
 app.get('/gainers', liveprice.getGainers);
 app.get('/losers', liveprice.getLosers);
 app.post('/dataloader', dataloader.loadData);
 app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
-
-<<<<<<< HEAD
 //websockets
-=======
->>>>>>> origin/master
->>>>>>> origin
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

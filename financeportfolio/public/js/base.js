@@ -54,4 +54,71 @@ $(document).ready(function(){
     	 // setTimeout( function() {  $('#gainersTable').dataTable(); }, 5000);
       }
     });
+	 
+	 $("#cName").autocomplete({
+			delay: 500,
+			minLength: 3,
+			source: function(request, response) {
+				console.log($("#cName").val());
+				var autocompleteQuery = {
+			    	query : $("#cName").val()
+	    	    };
+	    	    console.log(autocompleteQuery);
+				$.ajax({
+		    		  type: "POST",
+		              url: "/autocompletelist",
+		              contentType: "application/json; charset=UTF-8",
+		              data: JSON.stringify(autocompleteQuery),
+		              crossDomain : true,
+		              success: function( d ) {
+		              	  console.log(d);
+		            	  response(d);
+		              }
+		    	 });
+			},
+			focus: function(event, ui) {
+				event.preventDefault();
+			},
+			select: function(event, ui) {
+				event.preventDefault();
+				var urlStr = 'http://localhost:3000/todaysdata/'+ui.item.value;
+				$.getJSON(urlStr, function (data) {
+
+			        // Create the chart
+			        $('#containerr').highcharts('StockChart', {
+
+
+			            rangeSelector : {
+			                selected : 1
+			            },
+
+			            title : {
+			                text : ui.item.value+' Stock Price'
+			            },
+
+			            series : [{
+			                name : ui.item.value+' Stock Price',
+			                data : data,
+			                type : 'area',
+			                threshold : null,
+			                tooltip : {
+			                    valueDecimals : 2
+			                },
+			                fillColor : {
+			                    linearGradient : {
+			                        x1: 0,
+			                        y1: 0,
+			                        x2: 0,
+			                        y2: 1
+			                    },
+			                    stops : [
+			                        [0, Highcharts.getOptions().colors[0]],
+			                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+			                    ]
+			                }
+			            }]
+			        });
+			    });
+			}
+		});
 });
