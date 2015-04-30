@@ -52,7 +52,7 @@ app.get('/twitterfeeds', feeds.selectedtwitterfeeds);
 app.get('/gainers', liveprice.getGainers);
 app.get('/losers', liveprice.getLosers);
 app.post('/dataloader', dataloader.loadData);
-
+app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
 
 //websockets
 var server = http.createServer(app).listen(app.get('port'), function(){
