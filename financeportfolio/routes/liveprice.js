@@ -6,7 +6,6 @@ exports.gethomepage = function(req, res){
 };
 
 exports.liveticker = function(message, callback){
-  console.log(message);
   callback("error", "success reply");
 };
 
@@ -24,6 +23,7 @@ exports.getstockprice = function(req, res){
   console.log(req.params.stocksymbol);
 };
 
+<<<<<<< HEAD
 exports.todaysdata = function(req,res){
 	var request = require('request');
 	var parser= require('babyparse');
@@ -42,4 +42,38 @@ exports.todaysdata = function(req,res){
 		  console.log(error);
 	  }
 	})
+=======
+exports.getGainers = function(req, res){
+	var request = require('request');
+	request('https://ca.finance.yahoo.com/gainers?e=O', function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+		  var temp = body.toString().split('<div');
+		  var response = "<div";
+		  for(i=0; i<temp.length; i++){
+			  var patt = new RegExp(/(^ id="yfitp")/);
+			  if(patt.test(temp[i])){
+				  response = response + temp[i];
+				  res.send(response);
+			  }
+		  }
+	  }
+	});
+};
+
+exports.getLosers = function(req, res){
+	var request = require('request');
+	request('https://ca.finance.yahoo.com/losers?e=to', function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+		  var temp = body.toString().split('<div');
+		  var response = "<div";
+		  for(i=0; i<temp.length; i++){
+			  var patt = new RegExp(/(^ id="yfitp")/);
+			  if(patt.test(temp[i])){
+				  response = response + temp[i];
+				  res.send(response);
+			  }
+		  }
+	  }
+	});
+>>>>>>> origin/master
 };
