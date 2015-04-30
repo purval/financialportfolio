@@ -6,7 +6,6 @@ exports.gethomepage = function(req, res){
 };
 
 exports.liveticker = function(message, callback){
-  console.log(message);
   callback("error", "success reply");
 };
 
@@ -22,4 +21,13 @@ exports.searchsymbol = function(req, res){
 
 exports.getstockprice = function(req, res){
   console.log(req.params.stocksymbol);
+};
+
+exports.getGainersLosers = function(req, res){
+	var request = require('request');
+	request('https://ca.finance.yahoo.com/gainers?e=O', function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    console.log(body);
+	  }
+	});
 };
