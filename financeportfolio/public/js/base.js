@@ -15,6 +15,42 @@ $(function () {
 	
 });
 $(document).ready(function(){
+	//nasdaq table
+	$.ajax({
+	      type: "GET",
+	      url: "/quotes/stocksymbol/^IXIC",
+	      contentType: "application/json; charset=UTF-8",
+	      dataType: 'json',
+	      crossDomain : true,
+	      success: function( d ) {
+	         console.log(d); 
+	         if(d.change<0){
+	        	 $("#change").css('color', 'red');
+	        	 $("#change").append(d.change);
+	        	 $('#change').append($('<img>',{id:'change_img',src:'img/redarrow.gif',height:"20" ,width:"15"}));
+	        	 $("#change_img").css('margin-bottom',4);
+	        	 $("#change_img").css('margin-left',8);
+	         }
+	         else{
+	        	 $("#change").css('color', 'green');
+	        	 $("#change").append(d.change);
+	        	 $('#change').append($('<img>',{id:'change_img',src:'img/greenarrow.png',height:"20" ,width:"15"}));
+	        	 $("#change_img").css('margin-bottom',10);
+	        	 $("#change_img").css('margin-left',8);
+	          }
+	         $("#currentvalue").append(d.Index);
+	         $("#currentvalue").css('color','blue');
+	        
+	         $("#high").append(d.DaysHigh);
+	         $("#high").css('color','green');
+	         $("#low").append(d.DaysLow);
+	         $("#low").css('color','red');
+	      },
+	      error :function(err){	
+	    	 
+	      }
+	});
+	
 	 $.ajax({
       type: "GET",
       url: "/losers",
@@ -81,7 +117,7 @@ $(document).ready(function(){
 			},
 			select: function(event, ui) {
 				event.preventDefault();
-				var urlStr = 'http://localhost:3000/todaysdata/'+ui.item.value;
+				var urlStr = '/todaysdata/'+ui.item.value;
 				$.getJSON(urlStr, function (data) {
 
 			        // Create the chart
@@ -120,5 +156,5 @@ $(document).ready(function(){
 			        });
 			    });
 			}
-		});
+		});	 
 });
