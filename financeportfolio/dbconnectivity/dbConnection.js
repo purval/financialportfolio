@@ -5,8 +5,6 @@ var client = redis.createClient(6379,"192.168.1.192");
 function getRedisConnection(){
 	return client;
 }
-<<<<<<< HEAD
-=======
 
 exports.getPoolInstance = function(){
 	
@@ -32,5 +30,4 @@ exports.getPoolInstance = function(){
 	}	
 };
 
->>>>>>> origin/master
 exports.getRedisConnection = getRedisConnection;
