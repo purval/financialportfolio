@@ -4,5 +4,25 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('ind');
+};
+
+exports.home = function(req, res){
+  res.render('ind');
+};
+
+exports.stats = function(req, res){
+  res.render('stats');
+};
+
+exports.leaders = function(req, res){
+  res.render('leader');
+};
+
+exports.indexold = function(req, res){
+  res.render('indexold');
+};
+
+exports.advisingpage = function(req, res){
+  res.render('financialadvisor');
 };

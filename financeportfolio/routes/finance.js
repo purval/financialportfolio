@@ -11,12 +11,12 @@ exports.getQuotes = function(req, res) {
 		} else {
 			var results = response.query.results;
 			var output = {
-				symbol : results.quote.symbol,
-				bid : results.quote.bid,
+				change : results.quote.Change,
+				Index : results.quote.LastTradePriceOnly,
 				DaysLow : results.quote.DaysLow,
 				DaysHigh : results.quote.DaysHigh
-
 			};
+			console.log(output);
 			res.send(output);
 		}
 	});

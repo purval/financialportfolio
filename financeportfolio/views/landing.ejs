@@ -1,0 +1,272 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Finance Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="../css/font-awesome.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/Style2.css" rel="stylesheet">
+<link href="../css/pages/dashboard.css" rel="stylesheet">
+<script src="../js/latest.js"></script>
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+<script>
+
+function x()
+{
+    var checkboxes = document.getElementsByName('company');
+	var len = checkboxes.length;
+	var out = [];
+	for(var i=0; i<len; i++)
+	{
+		if (checkboxes[i].checked) 
+  		{
+   		out.push(checkboxes[i].value);
+  		}
+	}
+	console.log(out);
+	
+}
+
+</script>
+<script>
+function editUser()
+{
+	document.myForm.action = "/users/edit/<%=data[0].email%>";
+	document.myForm.method="post";
+	document.myForm.submit();
+}
+function deleteUser()
+{
+	document.myForm.action = "/users/delete/<%=data[0].email%>";
+	document.myForm.method="post";
+	document.myForm.submit();
+}
+function addWatchlist()
+{
+	var symbol = document.getElementById("symbol").value; 
+	var userid = document.getElementById("userid").value;
+	document.myForm.action = "/users/add_watchlist/"+userid+"/"+symbol;
+	document.myForm.method="post";
+	document.myForm.submit();
+}
+
+function compare()
+{
+	var checkboxes = document.getElementsByName('company');
+	var len = checkboxes.length;
+	var out = [];
+	for(var i=0; i<len; i++)
+	{
+		if (checkboxes[i].checked) 
+  		{
+   		out.push(checkboxes[i].value);
+  		}
+	}
+	console.log(out);
+}
+
+ var useridObj = {
+          userid : <%=data[0].userid%>
+        };
+        
+$(document).ready(
+function(){
+       $.ajax({
+          type: "POST",
+          url: "/users/get_watchlist/"+<%=data[0].userid%>,
+          contentType: "application/json; charset=UTF-8",
+          dataType: 'json',
+          data: JSON.stringify(useridObj),
+          crossDomain : true,
+          success: function(d) {
+          var len = d.length;
+          var str ="<table id='myTable' class='display table' width='100%'><thead><tr><th></th><th>Symbol</th><th>Name</th><th>TradePrice</th><th>Open</th><th>Change</th><th>Trade Date</th></tr></thead><tbody>";
+          for(var i=0; i<len; i++)
+          {
+         	 str += "<tr><td><input type='checkbox' name='company' value='"+d[i].symbol+"'></td><td>"+d[i].symbol+"</td><td>"+d[i].Name+"</td><td>"+d[i].LastTradePriceOnly+"</td><td>"+d[i].Open+"</td><td>"+d[i].Change+"</td><td>"+d[i].LastTradeDate+"</td></tr>";	
+          }
+          str += "</tbody></table>";
+          console.log(str);
+          document.getElementById("tablePage").innerHTML = str;
+          $('#myTable').dataTable();
+          }
+        });
+        
+          $("#x").click(function(){
+        	 var checkboxes = document.getElementsByName('company');
+			var len = checkboxes.length;
+			var out = [];
+			for(var i=0; i<len; i++)
+			{
+				if (checkboxes[i].checked) 
+  				{
+   				out.push(checkboxes[i].value);
+  				}
+			}
+			
+			console.log(out);		
+    	});       
+});
+
+
+$(document).ready(
+
+function(){
+ $(function () {
+    var seriesOptions = [],
+        seriesCounter = 0,
+       names = ['MSFT', 'AAPL', 'GOOG'],
+        // create the chart when all data is loaded
+        createChart = function () {
+
+            $('#container').highcharts('StockChart', {
+
+                rangeSelector: {
+                    selected: 4
+                },
+
+                yAxis: {
+                    labels: {
+                        formatter: function () {
+                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                        }
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 2,
+                        color: 'silver'
+                    }]
+                },
+
+                plotOptions: {
+                    series: {
+                        compare: 'percent'
+                    }
+                },
+
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                    valueDecimals: 2
+                },
+
+                series: seriesOptions
+            });
+        };
+
+    $.each(names, function (i, name) {
+
+        $.getJSON('/todaysdata_watch/'+name,    function (data) {
+
+            seriesOptions[i] = {
+                name: name,
+                data: data
+            };
+
+            // As we're loading the data asynchronously, we don't know what order it will arrive. So
+            // we keep a counter and create the chart when all the data is loaded.
+            seriesCounter += 1;
+
+            if (seriesCounter === names.length) {
+                createChart();
+            }
+        });
+    });
+    
+    
+});
+ 
+});
+
+
+</script>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Finance Portfolio </a>
+
+      <!--/.nav-collapse --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /navbar-inner --> 
+</div>
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <ul class="mainnav">
+        <li class="active"><a href="index.html"><span>Dashboard</span> </a> </li>
+        <li><a href="/stats"><span>Reports</span> </a> </li>
+        <li><a href="guidely.html"><span>About Us</span> </a></li>
+        <li><a href="charts.html"><span>Login</span> </a> </li>
+       
+       
+      </ul>
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /subnavbar-inner --> 
+</div>
+<!-- /subnavbar -->
+
+<form name="myForm" method="">
+Welcome <%=data[0].firstname%> <%=data[0].lastname%>
+<%if(error!==""){%><%=error%><%}%>  
+<Button onclick="editUser()" class="button btn btn-primary btn-large">Edit Account/Button>
+<Button onclick="deleteUser()" class="button btn btn-primary btn-large">Delete Account</Button>
+<br>
+
+<input type="text" id="symbol" value="" placeholder="Search Stocks,Check price"/>
+
+<input type="hidden" id="userid" value="<%=data[0].userid%>"/>
+
+<Button onclick="addWatchlist()" class="button btn btn-primary btn-large">+Add</Button>
+ <div class="span12">
+ <div id="loose" class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-th-list"></i>
+              <h3>Watchlist</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+          <div id="tablePage" class='table-responsive' width="100%">
+</div>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          </div>
+
+
+<Button id='x' class="button btn btn-primary btn-large">Compare</Button>
+ <div class="span12">
+ <div id="loose" class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-th-list"></i>
+              <h3>Chart</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+          <div id="container" style="height: 400px; min-width: 310px"></div>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          </div>
+
+
+</form>
+</body>
+</html>

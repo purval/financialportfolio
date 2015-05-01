@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Finance Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="../css/font-awesome.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+
+<link href="../css/Style2.css" rel="stylesheet">
+<link href="../css/pages/dashboard.css" rel="stylesheet">
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+<script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+<script>
+function getProfile()
+{
+	document.myForm.action = "/users/landing";
+	document.myForm.method = "POST";
+	document.myForm.submit();
+
+}
+</script>
+  <style>
+    .bubbleChart {
+      min-width: 100px;
+      max-width: 700px;
+      height: 400px;
+      margin: 0 auto;
+    }
+    .bubbleChart svg{
+      background: #000000;
+    }
+     .bubbleChart1 {
+      min-width: 100px;
+      max-width: 700px;
+      height: 400px;
+      margin: 0 auto;
+    }
+    .bubbleChart1 svg{
+      background: #000000;
+    }
+  </style>
+<script type="text/javascript">
+$(function () {
+    $.getJSON('http://localhost:3000/todaysdata/Google Inc.', function (data) {
+
+        // Create the chart
+        $('#containerr').highcharts('StockChart', {
+
+
+            rangeSelector : {
+                selected : 1
+            },
+
+            title : {
+                text : 'GOOG Stock Price'
+            },
+
+            series : [{
+                name : 'GOOG Stock Price',
+                data : data,
+                type : 'area',
+                threshold : null,
+                tooltip : {
+                    valueDecimals : 2
+                },
+                fillColor : {
+                    linearGradient : {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops : [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                }
+            }]
+        });
+    });
+});
+
+    </script>
+    
+<style type="text/css">
+    div.stockTicker
+		{
+			font-size: 18px;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+		div.stockTicker span.quote
+		{
+			margin: 0;
+			font-weight: bold;
+			color: #000;
+			padding: 0 5px 0 10px;
+		}
+		.GreenText
+		{
+			color: Green;
+		}
+		.RedText
+		{
+			color: Red;
+		}
+		.up_green
+		{
+			background: url(http://www.codescratcher.com/wp-content/uploads/2014/11/up.gif) no-repeat left center;
+			padding-left: 10px;
+			margin-right: 5px;
+		}
+		.down_red
+		{
+			background: url(http://www.codescratcher.com/wp-content/uploads/2014/11/down.gif) no-repeat left center;
+			padding-left: 10px;
+			margin-right: 5px;
+		}
+	</style>
+	 <script type="text/javascript">
+		(function($) {
+			$.fn.jStockTicker = function(options) {
+				if (typeof (options) == 'undefined') {
+					options = {};
+				}
+				var settings = $.extend( {}, $.fn.jStockTicker.defaults, options);
+				var $ticker = $(this);
+				var $wrap = null;
+				settings.tickerID = $ticker[0].id;
+				$.fn.jStockTicker.settings[settings.tickerID] = {};
+ 
+				if ($ticker.parent().get(0).className != 'wrap') {
+					$wrap = $ticker.wrap("<div class='wrap'></div>");
+				}
+ 
+				var $tickerContainer = null;
+				if ($ticker.parent().parent().get(0).className != 'container') {
+					$tickerContainer = $ticker.parent().wrap(
+							"<div class='container'></div>");
+				}
+				
+				var node = $ticker[0].firstChild;
+				var next;
+				while(node) {
+					next = node.nextSibling;
+					if(node.nodeType == 3) {
+						$ticker[0].removeChild(node);
+					}
+					node = next;
+				}
+				
+				var shiftLeftAt = $ticker.children().get(0).offsetWidth;
+				$.fn.jStockTicker.settings[settings.tickerID].shiftLeftAt = shiftLeftAt;
+				$.fn.jStockTicker.settings[settings.tickerID].left = 0;
+				$.fn.jStockTicker.settings[settings.tickerID].runid = null;
+				$ticker.width(2 * screen.availWidth);
+				
+				function startTicker() {
+					stopTicker();
+					
+					var params = $.fn.jStockTicker.settings[settings.tickerID]; 
+					params.left -= settings.speed;
+					if(params.left <= params.shiftLeftAt * -1) {
+						params.left = 0;
+						$ticker.append($ticker.children().get(0));
+						params.shiftLeftAt = $ticker.children().get(0).offsetWidth;
+					}
+					
+					$ticker.css('left', params.left + 'px');
+					params.runId = setTimeout(arguments.callee, settings.interval);
+					
+					$.fn.jStockTicker.settings[settings.tickerID] = params;
+				}
+				
+				function stopTicker() {
+					var params = $.fn.jStockTicker.settings[settings.tickerID];
+					if (params.runId)
+						clearTimeout(params.runId);
+					
+					params.runId = null;
+					$.fn.jStockTicker.settings[settings.tickerID] = params;
+				}
+				
+				function updateTicker() {			
+					stopTicker();
+					startTicker();
+				}
+				
+				$ticker.hover(stopTicker,startTicker);		
+				startTicker();
+			};
+ 
+			$.fn.jStockTicker.settings = {};
+			$.fn.jStockTicker.defaults = {
+				tickerID :null,
+				url :null,
+				speed :1,
+				interval :20
+			};
+		})(jQuery);
+    </script>
+	<script type="text/javascript">
+		$(window).load(function () {
+            StockPriceTicker();
+            setInterval(function() {StockPriceTicker();} , 60000);
+        });
+        function StockPriceTicker() {
+            var Symbol = "", CompName = "", Price = "", ChnageInPrice = "", PercentChnageInPrice = ""; 
+            var CNames = " ^FTSE,HSBA.L,SL.L,BATS.L,BLND.L,FLG.L,RBS.L,RMG.L,VOD.L,GOOG,YHOO,MSFT,SIRI,AMAT,FB,WYNN";
+            var flickerAPI = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + CNames + "%22)&env=store://datatables.org/alltableswithkeys";
+            var StockTickerHTML = "";
+            
+            var StockTickerXML = $.get(flickerAPI, function(xml) {
+                $(xml).find("quote").each(function () {
+                    Symbol = $(this).attr("symbol");
+                    $(this).find("Name").each(function () {
+                        CompName = $(this).text();
+                    });
+                    $(this).find("LastTradePriceOnly").each(function () {
+                        Price = $(this).text();
+                    });
+                    $(this).find("Change").each(function () {
+                        ChnageInPrice = $(this).text();
+                    });
+                    $(this).find("PercentChange").each(function () {
+                        PercentChnageInPrice = $(this).text();
+                    });
+                    
+                    var PriceClass = "GreenText", PriceIcon="up_green";
+                    if(parseFloat(ChnageInPrice) < 0) { PriceClass = "RedText"; PriceIcon="down_red"; }
+                    StockTickerHTML = StockTickerHTML + "<span class='" + PriceClass + "'>";
+                    StockTickerHTML = StockTickerHTML + "<span class='quote'>" + CompName + " (" + Symbol + ")</span> ";
+                    
+                    StockTickerHTML = StockTickerHTML + parseFloat(Price).toFixed(2) + " ";
+                    StockTickerHTML = StockTickerHTML + "<span class='" + PriceIcon + "'></span>" + parseFloat(Math.abs(ChnageInPrice)).toFixed(2) + " (";
+                    StockTickerHTML = StockTickerHTML + parseFloat( Math.abs(PercentChnageInPrice.split('%')[0])).toFixed(2) + "%)</span>";
+                });
+				
+                $("#dvStockTicker").html(StockTickerHTML);
+                $("#dvStockTicker").jStockTicker({interval: 30, speed: 3});
+            });
+        }
+    </script>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Finance Portfolio </a>
+      
+      <!--/.nav-collapse --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /navbar-inner --> 
+</div>
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <ul class="mainnav">
+        <li class="active"><a href="/userhome"><span>Home</span> </a> </li>
+        <li><a href="/stats"><span>Reports</span> </a> </li>
+        <li><div id='x' onclick='getProfile()'><span>Portfolio</span></div></li>
+        <li><a href="/financialadvisor"><span>Call Advisor</span> </a> </li>
+       
+       
+      </ul>
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /subnavbar-inner --> 
+</div>
+<center>
+<div id="StockTickerContainer" style="height: 32px; line-height: 32px; overflow: hidden;">
+        <div id='dvStockTicker' class='stockTicker'>
+        </div>
+    </div>
+ <div class="col-md-4">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12" style="align:center">
+                    <input type="text" id="cName" class="form-control input-lg" placeholder="Search Stocks,Check price" />
+                  
+                </div>
+            </div></div>
+            </center>
+<!-- /subnavbar -->
+
+<div class="main">
+  <div class="main-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span6">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3> Today's Stats for NASDAQ</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+                 
+                  <div id="big_stats" class="cf">
+                    <div class="stat"> Value<br><br> <span class="value" id ="currentvalue"></span> </div>
+                    <!-- .stat -->
+                    
+                    <div class="stat"> Change<br> <br><span class="value" id ="change"></span><img style="margin" id="change_img"></div>
+                    <!-- .stat -->
+                    
+                    <div class="stat">Day's High<br><br> <span class="value" id ="high"></span> </div>
+                    <!-- .stat -->
+                    
+                    <div class="stat"> Day's Low<br><br> <span class="value" id ="low"></span> </div>
+                    <!-- .stat --> 
+                  </div>
+                  
+                </div>
+                <!-- /widget-content --> 
+                
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+         
+           <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3>Top Gainers</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <ul class="news-items">
+            <div id="gainersDiv" class="display table" width="100%" >
+            </div>
+                
+              </ul>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget -->
+           <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3> What emotion is driving the market?</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <ul class="news-items">
+          
+                <a href=""><img src="http://money.cnn.com/.element/img/8.0/data/feargreed/1.png"></a>
+              </ul>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget -->
+            <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3> Recent News</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <ul class="news-items">
+                <!-- start feedwind code --><script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "http://www.nbcbayarea.com/entertainment/entertainment-news/?rss=y&embedThumb=y&summary=y",rssmikle_frame_width: "auto",rssmikle_frame_height: "auto",frame_height_by_article: "3",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "Off",rssmikle_title: "on",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#0066FF",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#0066FF",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M:%S %p",item_description_style: "text+tn",item_thumbnail: "crop",item_thumbnail_selection: "auto",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script>
+              </ul>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget --> 
+        </div>
+        <!-- /span6 -->
+        <div class="span6">
+          
+          <!-- /widget -->
+          <div class="widget">
+            <div class="widget-header"> <i class="icon-signal"></i>
+              <h3> Area Chart Example</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+            <script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+
+              <div id="containerr" style="height: 400px; min-width: 310px"></div>
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget -->
+          <div id="loose" class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-th-list"></i>
+              <h3>Top Losers</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+            <div id="loosersDiv" class="display table" width="100%">
+            </div>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget --> 
+            <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3>Bitcoin</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+            
+                <div class="module bitcoin">
+  
+  <div class="module-body">
+    <div id="pricechange" class="f2-app"><div class="modContent priceChange-Widget f2-app-container com_mod_cnnmoney_pricechange"><div class="wsod_sideInner"><table class="quoteData"><tbody><tr><th id="price-header">PRICE </th></tr><tr><td>&nbsp;</td></tr><tr><td class="price-value">$ 225.08</td></tr><tr><td>&nbsp;</td></tr><tr><td class="price-change"><div class="fLeft">-0.53%</div></td></tr></tbody></table><div id="price-change-widget-right"><div class="bitcoin-icon"></div></div></div></div>
+    <div class="modContent priceChange-Widget f2-app-container com_mod_cnnmoney_pricechange"><div class="wsod_sideInner"><table class="quoteData"></table><div id="price-change-widget-right"></div></div></div></div>
+  </div>
+  </div>
+             
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget -->
+          <div class="widget">
+            <div class="widget-header"> <i class="icon-signal"></i>
+              <h3>Twitter</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+            <div id = "tweets">
+            </div>
+              
+            </div>
+            <!-- /widget-content --> 
+          </div> 
+        </div>
+        <!-- /span6 --> 
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /main-inner --> 
+</div>
+<!-- /main -->
+
+<!-- /extra -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+      <center>
+        <div class="span12"> &copy; 2015 <a href="">CMPE 280 Team14 Finance Portfolio</a>. </div>
+        <!-- /span12 --> 
+        </center>
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /footer-inner --> 
+</div>
+<!-- /footer --> 
+<!-- Le javascript
+================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+
+<script src="../js/bootstrap.js"></script>
+<script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/base.js"></script> 
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenLite.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/utils/Draggable.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/plugins/CSSPlugin.min.js"></script>
+  <form name="myForm" method="">
+  <input type="hidden" id="email" name="email" value="<%=data[0].email%>" />
+  <input type="hidden" id="password" name="password" value="<%=data[0].password%>" />
+  </form>
+</body>
+</html>
