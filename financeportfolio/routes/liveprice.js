@@ -122,6 +122,7 @@ exports.todaysdata = function(req,res){
 			});
 		}	
 	});
+<<<<<<< HEAD
 };
 
 exports.todaysdata1 = function(req,res){
@@ -164,4 +165,6 @@ exports.todaysdata1 = function(req,res){
 			  console.log(finalObj);
 			  res.send(JSON.parse(JSON.stringify(finalObj)));
 			});	
+=======
+>>>>>>> origin/master
 };

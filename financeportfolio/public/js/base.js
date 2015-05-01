@@ -27,7 +27,11 @@ $(document).ready(function(){
 	         if(d.change<0){
 	        	 $("#change").css('color', 'red');
 	        	 $("#change").append(d.change);
+<<<<<<< HEAD
 	        	 $('#change').append($('<img>',{id:'change_img',src:'../img/redarrow.gif',height:"20" ,width:"15"}));
+=======
+	        	 $('#change').append($('<img>',{id:'change_img',src:'img/redarrow.gif',height:"20" ,width:"15"}));
+>>>>>>> origin/master
 	        	 $("#change_img").css('margin-bottom',4);
 	        	 $("#change_img").css('margin-left',8);
 	         }
@@ -138,6 +142,7 @@ $(document).ready(function(){
 			},
 			select: function(event, ui) {
 				event.preventDefault();
+<<<<<<< HEAD
 				var urlStr = '/todaysdata/'+ui.item.value;
 				$.getJSON(urlStr, function (data) {
 
@@ -145,6 +150,25 @@ $(document).ready(function(){
 			        $('#containerr').highcharts('StockChart', {
 
 
+=======
+				
+				var urlStr = '/todaysdata/'+ui.item.value;
+				$("#cName").val("");
+				$('#containerr').html(" ");
+				var html = "";
+				html += "<div id='progess-sec' class='progress'>";
+				html += "<div class='progress-bar progress-bar-striped active' role='progressbar'";
+				html += " aria-valuenow='65' aria-valuemin='0' aria-valuemax='100' style='width:100%'>";
+				html += " <center>Loading</center> </div> </div>";
+				  
+				$('#containerr').append(html);
+								
+				$.getJSON(urlStr, function (data) {
+					$('#progess-sec').remove();
+			        // Create the chart
+			        $('#containerr').highcharts('StockChart', {
+
+>>>>>>> origin/master
 			            rangeSelector : {
 			                selected : 1
 			            },

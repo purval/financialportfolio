@@ -61,6 +61,7 @@ app.get('/gainers', liveprice.getGainers);
 app.get('/losers', liveprice.getLosers);
 app.post('/dataloader', dataloader.loadData);
 app.get('/todaysdata/:stocksymbol',liveprice.todaysdata);
+<<<<<<< HEAD
 app.get('/todaysdata_watch/:stocksymbol',liveprice.todaysdata1);
 //websockets
 app.get('/userhome',users.userhome);
@@ -77,6 +78,9 @@ app.post('/users/landing',users.loginAuthentication1);
 
 
 
+=======
+//websockets
+>>>>>>> origin/master
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
