@@ -53,41 +53,11 @@
   <div class="main-inner">
     <div class="container">
       <button id="call" type="button" class="class="btn btn-success" btn-lg">Join</button>
-
-      <div class="row">
-	  <div id="localVideo" class="col-md-6" muted></div>
-	  <div id="remoteVideo" class="col-md-6"></div>
-	</div>
-
-	   <button id="hangup" type="button" class="class="btn btn-success" btn-lg">Hangup</button>
-	    <div class="span6">
-	    <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3>Conference</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-            
-		<div class="row">
-			  <div id="localVideo"  muted></div>
-			 
-		</div> 
-		</div>  
-    </div>
-    <div class="span6">
-	    <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3>Conference</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-            
-		<div class="row">
-			 
-			  <div id="remoteVideo" ></div>
-		</div> 
-		</div>  
-    </div>
+	  <button id="hangup" type="button" class="class="btn btn-success" btn-lg">Hangup</button>
+      	<div class="row">
+	  		<div id="localVideo" class="col-md-6" muted></div>
+	  		<div id="remoteVideo" class="col-md-6"></div>
+		</div>
     </div>
     <!-- /container --> 
   </div>
@@ -117,14 +87,11 @@
 <!-- Placed at the end of the document so the pages load faster --> 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#call").click(function(){
-		$("#call").css('margin-bottom',10);
-		$("#call").html('hangup');
-$("#call").css('margin-bottom',10);
-$("#hangup").hide();
-$("#hangup").css('margin-bottom',10);
+	
+	$("#call").css('margin-bottom',10);
+	$("#hangup").hide();
+	$("#hangup").css('margin-bottom',10);
 
-$(document).ready(function(){
 	$("#call").click(function(){
 		$("#call").hide();
 		$("#hangup").show();
