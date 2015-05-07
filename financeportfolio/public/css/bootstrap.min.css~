@@ -5,8 +5,8 @@ audio, canvas, video {
 	width: 100 px;
 	height: 100 px;
 	margin : 200 px;
-	display: inline-block;
-*display:inline;
+	
+
 *zoom:1;
 }
 audio:not([controls]) {

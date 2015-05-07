@@ -29,7 +29,7 @@ exports.selectedtwitterfeeds = function(req, res){
 	    if (error){
 	        console.log('Error: ' + (error.code ? error.code + ' ' + error.message : error.message));
 	    }else{
-	    	for(i=0; i<result.length && i < 5;i++){
+	    	for(i=0; i<result.length; i++){
 		    	temp = {
 		    		created : result[i].created_at,
 		    		text : result[i].text,

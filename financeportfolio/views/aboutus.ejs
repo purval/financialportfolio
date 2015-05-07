@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Finance Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/jquery-1.11.2.min"></script>
+  
+<script>
+	$(document).ready(function() {
+      $("#sanket").click(function changeClass(){
+        $("#profile_detail_sanket").attr("class", "profile show"); 
+    });
+	
+	$("button1").click(function changeClass(){
+        $("#profile_detail_sanket").attr("class", "profile hidden"); 
+    });
+	
+	  $("#purval").click(function changeClass(){
+        $("#profile_detail_purval").attr("class", "profile show"); 
+    });
+	
+	$("button1").click(function changeClass(){
+        $("#profile_detail_purval").attr("class", "profile hidden"); 
+    });
+	
+	  $("#dharmik").click(function changeClass(){
+        $("#profile_detail_dharmik").attr("class", "profile show"); 
+    });
+	
+	$("button1").click(function changeClass(){
+        $("#profile_detail_dharmik").attr("class", "profile hidden"); 
+    });
+	
+	  $("#ishan").click(function changeClass(){
+        $("#profile_detail_ishan").attr("class", "profile1 show"); 
+    });
+	
+	$("button1").click(function changeClass(){
+        $("#profile_detail_ishan").attr("class", "profile1 hidden"); 
+    });
+	
+	  $("#henil").click(function changeClass(){
+        $("#profile_detail_henil").attr("class", "profile1 show"); 
+    });
+	
+	$("button1").click(function changeClass(){
+        $("#profile_detail_henil").attr("class", "profile1 hidden"); 
+    });
+	
+	  $("#vidit").click(function changeClass(){
+        $("#profile_detail_vidit").attr("class", "profile1 show"); 
+    });
+	
+	$("button1").click(function changeClass(){
+        $("#profile_detail_vidit").attr("class", "profile1 hidden"); 
+    });
+	
+   });
+   
+	</script>
+	<style>
+	.profile
+	{
+	position: absolute;
+	width : 800px;
+	height: 500px;
+	left : 20%;
+	top : 19%;
+	background-color: white;
+	z-index: 99;
+	border-style: solid;
+    border-width: 1px;
+	}
+	.profile1
+	{
+	position: absolute;
+	width : 800px;
+	height: 500px;
+	left : 20%;
+	top : 50%;
+	background-color: white;
+	z-index: 99;
+	border-style: solid;
+    border-width: 1px;
+	}
+	.span1{
+		background: #b3cdda;		
+	}
+	.span9{
+		background: #d9e6ee;	
+	}
+	.span3, .span9{
+		min-height: 250px;
+	}
+
+	</style>
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<link href="css/Style2.css" rel="stylesheet">
+<link href="css/pages/dashboard.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="navbar navbar-top">
+  <div class="navbar-inner">
+    <div class="container"><a class="brand" href="index.html">Finance Portfolio </a>
+      
+      <!--/.nav-collapse --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /navbar-inner --> 
+</div>
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <ul class="mainnav">
+        <li class="active"><a href="/"><span>Dashboard</span> </a> </li>
+        <li><a href="/stats"><span>Analysis</span> </a> </li>
+        <li><a href="/aboutus"><span>About Us</span> </a></li>
+      </ul>
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /subnavbar-inner --> 
+</div>
+  
+  <center>
+  <div class="container">
+    <h3><strong>Management</strong><br></h3>     
+    <p><font size = "3">Visionary data scientists. Accomplised industry veterans. Trusted advisors. Proven investors.<br>
+    OurCo is led by a world-class team that believes in data's potential to change the world.<br>
+    Our company is proud to be backed by Intel Capital, Investor Growth Capital (IGC),<br>
+    QuestMark Partners, Goldman Sachs, TransLink Capital and other strategic investors.</font>
+    </p>      
+   
+			<div class="col-lg-12">
+                <h1 class="page-header"><font color = "green">Executive Team</font></h1>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                    <div id="sanket" class = "thumbnail"><img class="img-responsive" src="images/sanket.JPG" alt=""></div>
+            </div>
+			<div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                    <div id="purval" class = "thumbnail"><img class="img-responsive" src="images/sanket.JPG" alt=""></div>
+            </div>
+			<div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                    <div id="dharmik" class = "thumbnail"><img class="img-responsive" src="images/sanket.JPG" alt=""></div>
+            </div>
+           
+			<div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                    <div id="ishan" class = "thumbnail"><img class="img-responsive" src="images/sanket.JPG" alt=""></div>
+            </div>
+			<div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                    <div id="henil" class = "thumbnail"><img class="img-responsive" src="images/sanket.JPG" alt=""></div>
+            </div>
+             <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                    <div id="vidit" class = "thumbnail"><img class="img-responsive" src="images/sanket.JPG" alt=""></div>
+            </div>
+           
+            
+            
+</div>
+</center>
+<form name="myForm"></form>
+<div class="profile hidden" id="profile_detail_sanket">
+<br> 
+<div class="row">  <div class="col-md-1" style="background-color:white;"></div> 
+<div class="col-md-3" style="background-color:white;"> <img class="img-responsive" src="images/sanket.JPG" alt=""/></div>
+<div class="col-md-6" style="background-color:white;"><br><br><br><br><h1><font style="color:#E60000">Sanket Patel</font></h1><h4><font style="color:#0099FF">Web Developer</h4></font><h4>sanket24.07@gmail.com</h4></div>
+<div class="col-md-1" style="background-color:white;"><button1 class="btn btn-danger" type="button">Close</button1></div>
+</div>
+
+<div class="row">
+<div class="col-md-1" style="background-color:white;"></div>
+<div class="col-md-10" style="background-color:white;"><br><h1><h4>I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.</h4></div>
+</div>
+
+</div>
+
+<div class="profile hidden" id="profile_detail_purval">
+<br> 
+<div class="row">  <div class="col-md-1" style="background-color:white;"></div> 
+<div class="col-md-3" style="background-color:white;"> <img class="img-responsive" src="images/sanket.JPG" alt=""/></div>
+<div class="col-md-6" style="background-color:white;"><br><br><br><br><h1><font style="color:#E60000">Purval Shah</font></h1><h4><font style="color:#0099FF">Web Developer</h4></font><h4>sanket24.07@gmail.com</h4></div>
+<div class="col-md-1" style="background-color:white;"><button1 class="btn btn-danger" type="button">Close</button1></div>
+</div>
+
+<div class="row">
+<div class="col-md-1" style="background-color:white;"></div>
+<div class="col-md-10" style="background-color:white;"><br><h1><h4>I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.</h4></div>
+</div>
+
+</div>
+
+<div class="profile hidden" id="profile_detail_dharmik">
+<br> 
+<div class="row">  <div class="col-md-1" style="background-color:white;"></div> 
+<div class="col-md-3" style="background-color:white;"> <img class="img-responsive" src="images/sanket.JPG" alt=""/></div>
+<div class="col-md-6" style="background-color:white;"><br><br><br><br><h1><font style="color:#E60000">Dharmik Patel</font></h1><h4><font style="color:#0099FF">Web Developer</h4></font><h4>sanket24.07@gmail.com</h4></div>
+<div class="col-md-1" style="background-color:white;"><button1 class="btn btn-danger" type="button">Close</button1></div>
+</div>
+
+<div class="row">
+<div class="col-md-1" style="background-color:white;"></div>
+<div class="col-md-10" style="background-color:white;"><br><h1><h4>I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.</h4></div>
+</div>
+
+</div>
+
+<div class="profile1 hidden" id="profile_detail_ishan">
+<br> 
+<div class="row">  <div class="col-md-1" style="background-color:white;"></div> 
+<div class="col-md-3" style="background-color:white;"> <img class="img-responsive" src="images/sanket.JPG" alt=""/></div>
+<div class="col-md-6" style="background-color:white;"><br><br><br><br><h1><font style="color:#E60000">Ishan Soni</font></h1><h4><font style="color:#0099FF">Web Developer</h4></font><h4>sanket24.07@gmail.com</h4></div>
+<div class="col-md-1" style="background-color:white;"><button1 class="btn btn-danger" type="button">Close</button1></div>
+</div>
+
+<div class="row">
+<div class="col-md-1" style="background-color:white;"></div>
+<div class="col-md-10" style="background-color:white;"><br><h1><h4>I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.</h4></div>
+</div>
+
+</div>
+
+<div class="profile1 hidden" id="profile_detail_henil">
+<br> 
+<div class="row">  <div class="col-md-1" style="background-color:white;"></div> 
+<div class="col-md-3" style="background-color:white;"> <img class="img-responsive" src="images/sanket.JPG" alt=""/></div>
+<div class="col-md-6" style="background-color:white;"><br><br><br><br><h1><font style="color:#E60000">Henil Shah</font></h1><h4><font style="color:#0099FF">Web Developer</h4></font><h4>sanket24.07@gmail.com</h4></div>
+<div class="col-md-1" style="background-color:white;"><button1 class="btn btn-danger" type="button">Close</button1></div>
+</div>
+
+<div class="row">
+<div class="col-md-1" style="background-color:white;"></div>
+<div class="col-md-10" style="background-color:white;"><br><h1><h4>I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.</h4></div>
+</div>
+
+</div>
+
+<div class="profile1 hidden" id="profile_detail_vidit">
+<br> 
+<div class="row">  <div class="col-md-1" style="background-color:white;"></div> 
+<div class="col-md-3" style="background-color:white;"> <img class="img-responsive" src="images/sanket.JPG" alt=""/></div>
+<div class="col-md-6" style="background-color:white;"><br><br><br><br><h1><font style="color:#E60000">Vidit Maniyar</font></h1><h4><font style="color:#0099FF">Web Developer</h4></font><h4>sanket24.07@gmail.com</h4></div>
+<div class="col-md-1" style="background-color:white;"><button1 class="btn btn-danger" type="button">Close</button1></div>
+</div>
+
+<div class="row">
+<div class="col-md-1" style="background-color:white;"></div>
+<div class="col-md-10" style="background-color:white;"><br><h1><h4>I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.I would like to apply for the position of Software Engineer Intern. I am pursuing MS in Software Engineering from San Jose State University. I believe my qualification and academic project experience is good match for this position and I would be ideal match to contribute to team’s operation and learn from experienced employees.</h4></div>
+</div>
+
+</div>
+<!-- /extra -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+      <center>
+        <div class="span12"> &copy; 2015 <a href="">CMPE 280 Team14 Finance Portfolio</a>. </div>
+        <!-- /span12 --> 
+        </center>
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /footer-inner --> 
+</div>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

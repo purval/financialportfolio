@@ -15,6 +15,50 @@ $(function () {
 	
 });
 $(document).ready(function(){
+	$('.carousel').carousel({
+		  interval: 3000
+	});
+	
+	 $.ajax({
+	      type: "GET",
+	      url: "/losers",
+	      contentType: "application/json; charset=UTF-8",
+	      dataType: 'json',
+	      crossDomain : true,
+	      success: function( d ) {
+	         console.log(d); 
+	      },
+	      error :function(err){	
+	    	  $("#loosersDiv").append(err.responseText);
+	    	  $( ".last" ).remove();
+	    	  //Draggable.create("#loosersTable", {type:"scrollTop", edgeResistance:0, lockAxis:true});
+	    	  $('#loosersTable').dataTable({
+	  	        "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]]
+	  	      });
+	    	 // setTimeout( function() {  $('#loosersTable').dataTable(); }, 5000);
+	      }
+	    });
+		 
+		 $.ajax({
+	      type: "GET",
+	      url: "/gainers",
+	      contentType: "application/json; charset=UTF-8",
+	      dataType: 'json',
+	      crossDomain : true,
+	      success: function( d ) {
+	         console.log(d);
+	      },
+	      error :function(err){	
+	    	  $("#gainersDiv").append(err.responseText);
+	    	  $( ".last" ).remove();
+	    	  $('#gainersTable').dataTable({
+	    	        "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]]
+	    	  });
+	    	 // Draggable.create("#gainersTable", {type:"scrollTop", edgeResistance:0, lockAxis:true});
+	    	 // setTimeout( function() {  $('#gainersTable').dataTable(); }, 5000);
+	      }
+	    });
+	
 	//nasdaq table
 	$.ajax({
 	      type: "GET",
@@ -62,57 +106,29 @@ $(document).ready(function(){
        success: function( d ) {
        	  for(i=0;i<d.length;i++){           	  	
 			    	 var html = "";
-
-			          html += "<div class='rows'>";
-			            html += "<img src='"+d[i].profile_url+"' alt='' class='img-circle'>";
-			            html += "<div>"+d[i].text+"</div>";
-			            html += "<div>"+d[i].created+"</div>";
-			          html += "</div>";
-			          $('#tweets').append(html);
+			    	 if(i===0){
+			    		 html += "<div class='active item'>";
+			    		 html += "<div id='row'>";
+			    		 html += "<img src='"+d[i].profile_url+"' alt='' class='img-circle'>";
+				            html += "<div>"+d[i].text+"</div>";
+				            html += "<div>"+d[i].created+"</div>";
+				         html += "</div>";
+			    		 html += "</div>";
+			    	 }else{
+			    		 html += "<div class='item'>";
+			    		 html += "<div id='row'>";
+			    		 html += "<img src='"+d[i].profile_url+"' alt='' class='img-circle'>";
+				            html += "<div>"+d[i].text+"</div>";
+				            html += "<div>"+d[i].created+"</div>";
+				         html += "</div>";
+			    		 html += "</div>";
+			    	 }
+			          $('#carTweets').append(html);
        	  }
-       	  Draggable.create("#tweets", {type:"scrollTop", edgeResistance:0, lockAxis:true});
+       	  /*Draggable.create("#carTweets", {type:"scrollTop", edgeResistance:0, lockAxis:true});*/
        }
 	});
 	
-	 $.ajax({
-      type: "GET",
-      url: "/losers",
-      contentType: "application/json; charset=UTF-8",
-      dataType: 'json',
-      crossDomain : true,
-      success: function( d ) {
-         console.log(d); 
-      },
-      error :function(err){	
-    	  $("#loosersDiv").append(err.responseText);
-    	  $( ".last" ).remove();
-    	  //Draggable.create("#loosersTable", {type:"scrollTop", edgeResistance:0, lockAxis:true});
-    	  $('#loosersTable').dataTable({
-  	        "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]]
-  	      });
-    	 // setTimeout( function() {  $('#loosersTable').dataTable(); }, 5000);
-      }
-    });
-	 
-	 $.ajax({
-      type: "GET",
-      url: "/gainers",
-      contentType: "application/json; charset=UTF-8",
-      dataType: 'json',
-      crossDomain : true,
-      success: function( d ) {
-         console.log(d);
-      },
-      error :function(err){	
-    	  $("#gainersDiv").append(err.responseText);
-    	  $( ".last" ).remove();
-    	  $('#gainersTable').dataTable({
-    	        "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]]
-    	  });
-    	 // Draggable.create("#gainersTable", {type:"scrollTop", edgeResistance:0, lockAxis:true});
-    	 // setTimeout( function() {  $('#gainersTable').dataTable(); }, 5000);
-      }
-    });
 	 
 	 $("#cName").autocomplete({
 			delay: 500,

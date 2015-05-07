@@ -7,10 +7,10 @@ var mysql = require('mysql');
 
 function getConnection(){
 	var connection = mysql.createConnection({
-	    host     : 'localhost',
+	    host     : 'cmpe280.cc7bquhhcd3t.us-east-1.rds.amazonaws.com',
 	    user     : 'root',
-	    password : 'root',
-	    database : 'financialportfolio',
+	    password : 'cmpe_280',
+	    database : 'cmpe280',
 	    multipleStatements: true
 	});
 	return connection;

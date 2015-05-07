@@ -5,6 +5,8 @@
 <title>Finance Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-translate-customization" content="111ed82c09b46b3c-cd8c78a0244f8fc5-g27267885ae01abbd-2c"></meta>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 
@@ -35,24 +37,72 @@
 <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
 
   <style>
-    .bubbleChart {
-      min-width: 100px;
-      max-width: 700px;
-      height: 400px;
-      margin: 0 auto;
-    }
-    .bubbleChart svg{
-      background: #000000;
-    }
-     .bubbleChart1 {
-      min-width: 100px;
-      max-width: 700px;
-      height: 400px;
-      margin: 0 auto;
-    }
-    .bubbleChart1 svg{
-      background: #000000;
-    }
+.vertical .carousel-inner {
+  height: 100%;
+}
+
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+     -moz-transition: 0.6s ease-in-out top;
+      -ms-transition: 0.6s ease-in-out top;
+       -o-transition: 0.6s ease-in-out top;
+          transition: 0.6s ease-in-out top;
+}
+
+.carousel.vertical .active {
+  top: 0;
+}
+
+.carousel.vertical .next {
+  top: 400px;
+}
+
+.carousel.vertical .prev {
+  top: -400px;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+  top: 0;
+}
+
+.carousel.vertical .active.left {
+  top: -400px;
+}
+
+.carousel.vertical .active.right {
+  top: 400px;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}
+
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    padding: 0;
+    margin-top: 2px;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: #DDD;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
   </style>
 <script type="text/javascript">
 $(function () {
@@ -70,15 +120,30 @@ $(function () {
         // Create the chart
         $('#containerr').highcharts('StockChart', {
 
-
-            rangeSelector : {
-                selected : 1
-            },
-
             title : {
                 text : 'GOOG Stock Price'
             },
+			xAxis: {
+                gapGridLineWidth: 0
+            },
 
+            rangeSelector : {
+                buttons : [{
+                    type : 'hour',
+                    count : 1,
+                    text : '1h'
+                }, {
+                    type : 'day',
+                    count : 1,
+                    text : '1D'
+                }, {
+                    type : 'all',
+                    count : 1,
+                    text : 'All'
+                }],
+                selected : 1,
+                inputEnabled : false
+            },
             series : [{
                 name : 'GOOG Stock Price',
                 data : data,
@@ -98,7 +163,8 @@ $(function () {
                         [0, Highcharts.getOptions().colors[0]],
                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
                     ]
-                }
+                },
+                threshold : null
             }]
         });
     });
@@ -269,10 +335,18 @@ $(function () {
     </script>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Finance Portfolio </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Financial Portfolio </a>
       
       <!--/.nav-collapse --> 
     </div>
@@ -286,19 +360,32 @@ $(function () {
     <div class="container">
       <ul class="mainnav">
         <li class="active"><a href="/"><span>Dashboard</span> </a> </li>
-        <li><a href="/stats"><span>Reports</span> </a> </li>
-        <li><a href="/"><span>About Us</span> </a></li>
+        <li><a href="/stats"><span>Analysis</span> </a> </li>
+        <li><a href="/aboutus"><span>About Us</span> </a></li>
         <li><a href="/login"><span>Login</span> </a> </li>
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Language</span> <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="/hindi">Hindi</a></li>
-            <li><a href="/german">German</a></li>
-            <li><a href="/spanish">Spanish</a></li>
-            
-          </ul>
-        </li>
-       
-       
+		<li>
+		<!-- Place this tag in your head or just before your close body tag. -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+		<!-- Place this tag where you want the share button to render. -->
+		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+		</li>
+		<li>
+		<div class="fb-share-button" data-href="http://financialportfolio-env.elasticbeanstalk.com/" data-layout="button"></div>
+		</li>
+		<li>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://financialportfolio-env.elasticbeanstalk.com/" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		</li>
+		<li>
+        <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
       </ul>
     </div>
     <!-- /container --> 
@@ -360,7 +447,6 @@ $(function () {
            <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3>Gainers</h3>
-              <h3>Top Gainers</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
@@ -387,6 +473,7 @@ $(function () {
             <!-- /widget-content --> 
           </div>
           <!-- /widget -->
+          
             <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3> Recent News</h3>
@@ -432,6 +519,7 @@ $(function () {
             <!-- /widget-content --> 
           </div>
           <!-- /widget --> 
+          
             <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3>Bitcoin</h3>
@@ -459,7 +547,15 @@ $(function () {
             <div class="widget-content">
             <div id = "tweets">
             </div>
-              
+            
+            <div id="myCarousel" class="carousel slide vertical">
+	            <!-- Carousel items -->
+	            <div id="carTweets" class="carousel-inner">
+	                
+	            </div>
+	            <!-- Carousel nav -->
+        	</div>
+            
             </div>
             <!-- /widget-content --> 
           </div> 

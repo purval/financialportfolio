@@ -26,3 +26,7 @@ exports.indexold = function(req, res){
 exports.advisingpage = function(req, res){
   res.render('financialadvisor');
 };
+
+exports.aboutus = function(req,res){
+	res.render('aboutus');
+};
