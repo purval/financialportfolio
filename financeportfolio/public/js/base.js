@@ -72,7 +72,7 @@ $(document).ready(function(){
 	        	 $("#change").css('color', 'red');
 	        	 $("#change").append(d.change);
 
-	        	 $('#change').append($('<img>',{id:'change_img',src:'../img/redarrow.gif',height:"20" ,width:"15"}));
+	        	 $('#change').append($('<img>',{id:'change_img',src:'../img/redarrow.gif',alt:'down',height:"20" ,width:"15"}));
 
 	        	 $("#change_img").css('margin-bottom',4);
 	        	 $("#change_img").css('margin-left',8);
@@ -80,7 +80,7 @@ $(document).ready(function(){
 	         else{
 	        	 $("#change").css('color', 'green');
 	        	 $("#change").append(d.change);
-	        	 $('#change').append($('<img>',{id:'change_img',src:'img/greenarrow.png',height:"20" ,width:"15"}));
+	        	 $('#change').append($('<img>',{id:'change_img',src:'../img/greenarrow.png',alt:'up',height:"20" ,width:"15"}));
 	        	 $("#change_img").css('margin-bottom',10);
 	        	 $("#change_img").css('margin-left',8);
 	          }
@@ -104,7 +104,7 @@ $(document).ready(function(){
        contentType: "application/json; charset=UTF-8",
        crossDomain : true,
        success: function( d ) {
-       	  for(i=0;i<d.length;i++){           	  	
+       	  for(i=0;i<5;i++){           	  	
 			    	 var html = "";
 			    	 if(i===0){
 			    		 html += "<div class='active item'>";
@@ -164,7 +164,7 @@ $(document).ready(function(){
 				html += "<div id='progess-sec' class='progress'>";
 				html += "<div class='progress-bar progress-bar-striped active' role='progressbar'";
 				html += " aria-valuenow='65' aria-valuemin='0' aria-valuemax='100' style='width:100%'>";
-				html += " <center>Loading</center> </div> </div>";
+				html += " Loading </div> </div>";
 				  
 				$('#containerr').append(html);
 								

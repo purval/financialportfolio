@@ -2,21 +2,22 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Finance Portfolio</title>
+<title>Financial Portfolio-Home Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <meta name="google-translate-customization" content="111ed82c09b46b3c-cd8c78a0244f8fc5-g27267885ae01abbd-2c"></meta>
+<meta name="description" content = "This site provides analysis of stocks in real time"></meta>
+<meta name="keywords" content="stocks,markets,analysis,gainers,loosers,Financial,Portfolio" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-
+<link href="css/index.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
         rel="stylesheet">
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-
+<link href="../css/pages/dashboard.css" rel="stylesheet">
 <link href="css/Style2.css" rel="stylesheet">
-<link href="css/pages/dashboard.css" rel="stylesheet">
 <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -26,312 +27,27 @@
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
-<script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
 
-  <style>
-.vertical .carousel-inner {
-  height: 100%;
-}
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-.carousel.vertical .item {
-  -webkit-transition: 0.6s ease-in-out top;
-     -moz-transition: 0.6s ease-in-out top;
-      -ms-transition: 0.6s ease-in-out top;
-       -o-transition: 0.6s ease-in-out top;
-          transition: 0.6s ease-in-out top;
-}
+ ga('create', 'UA-62746603-1', 'auto');
+ ga('send', 'pageview');
 
-.carousel.vertical .active {
-  top: 0;
-}
-
-.carousel.vertical .next {
-  top: 400px;
-}
-
-.carousel.vertical .prev {
-  top: -400px;
-}
-
-.carousel.vertical .next.left,
-.carousel.vertical .prev.right {
-  top: 0;
-}
-
-.carousel.vertical .active.left {
-  top: -400px;
-}
-
-.carousel.vertical .active.right {
-  top: 400px;
-}
-
-.carousel.vertical .item {
-    left: 0;
-}
-
-.ui-autocomplete {
-    position: absolute;
-    z-index: 1000;
-    cursor: default;
-    padding: 0;
-    margin-top: 2px;
-    list-style: none;
-    background-color: #ffffff;
-    border: 1px solid #ccc
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-.ui-autocomplete > li {
-  padding: 3px 20px;
-}
-.ui-autocomplete > li.ui-state-focus {
-  background-color: #DDD;
-}
-.ui-helper-hidden-accessible {
-  display: none;
-}
-  </style>
+</script>
 <script type="text/javascript">
-$(function () {
-	$('#containerr').html(" ");
-	var html = "";
-	html += "<div id='progess-sec' class='progress'>";
-	html += "<div class='progress-bar progress-bar-striped active' role='progressbar'";
-	html += " aria-valuenow='65' aria-valuemin='0' aria-valuemax='100' style='width:100%'>";
-	html += " <center>Loading</center> </div> </div>";
-	  
-	$('#containerr').append(html);
-	
-    $.getJSON('/todaysdata/Google Inc.', function (data) {
-		$('#progess-sec').remove();
-        // Create the chart
-        $('#containerr').highcharts('StockChart', {
 
-            title : {
-                text : 'GOOG Stock Price'
-            },
-			xAxis: {
-                gapGridLineWidth: 0
-            },
-
-            rangeSelector : {
-                buttons : [{
-                    type : 'hour',
-                    count : 1,
-                    text : '1h'
-                }, {
-                    type : 'day',
-                    count : 1,
-                    text : '1D'
-                }, {
-                    type : 'all',
-                    count : 1,
-                    text : 'All'
-                }],
-                selected : 1,
-                inputEnabled : false
-            },
-            series : [{
-                name : 'GOOG Stock Price',
-                data : data,
-                type : 'area',
-                threshold : null,
-                tooltip : {
-                    valueDecimals : 2
-                },
-                fillColor : {
-                    linearGradient : {
-                        x1: 0,
-                        y1: 0,
-                        x2: 0,
-                        y2: 1
-                    },
-                    stops : [
-                        [0, Highcharts.getOptions().colors[0]],
-                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                    ]
-                },
-                threshold : null
-            }]
-        });
-    });
-});
 
     </script>
     
-<style type="text/css">
-    div.stockTicker
-		{
-			font-size: 18px;
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			position: relative;
-		}
-		div.stockTicker span.quote
-		{
-			margin: 0;
-			font-weight: bold;
-			color: #000;
-			padding: 0 5px 0 10px;
-		}
-		.GreenText
-		{
-			color: Green;
-		}
-		.RedText
-		{
-			color: Red;
-		}
-		.up_green
-		{
-			background: url(http://www.codescratcher.com/wp-content/uploads/2014/11/up.gif) no-repeat left center;
-			padding-left: 10px;
-			margin-right: 5px;
-		}
-		.down_red
-		{
-			background: url(http://www.codescratcher.com/wp-content/uploads/2014/11/down.gif) no-repeat left center;
-			padding-left: 10px;
-			margin-right: 5px;
-		}
-	</style>
 	 <script type="text/javascript">
-		(function($) {
-			$.fn.jStockTicker = function(options) {
-				if (typeof (options) == 'undefined') {
-					options = {};
-				}
-				var settings = $.extend( {}, $.fn.jStockTicker.defaults, options);
-				var $ticker = $(this);
-				var $wrap = null;
-				settings.tickerID = $ticker[0].id;
-				$.fn.jStockTicker.settings[settings.tickerID] = {};
- 
-				if ($ticker.parent().get(0).className != 'wrap') {
-					$wrap = $ticker.wrap("<div class='wrap'></div>");
-				}
- 
-				var $tickerContainer = null;
-				if ($ticker.parent().parent().get(0).className != 'container') {
-					$tickerContainer = $ticker.parent().wrap(
-							"<div class='container'></div>");
-				}
-				
-				var node = $ticker[0].firstChild;
-				var next;
-				while(node) {
-					next = node.nextSibling;
-					if(node.nodeType == 3) {
-						$ticker[0].removeChild(node);
-					}
-					node = next;
-				}
-				
-				var shiftLeftAt = $ticker.children().get(0).offsetWidth;
-				$.fn.jStockTicker.settings[settings.tickerID].shiftLeftAt = shiftLeftAt;
-				$.fn.jStockTicker.settings[settings.tickerID].left = 0;
-				$.fn.jStockTicker.settings[settings.tickerID].runid = null;
-				$ticker.width(2 * screen.availWidth);
-				
-				function startTicker() {
-					stopTicker();
-					
-					var params = $.fn.jStockTicker.settings[settings.tickerID]; 
-					params.left -= settings.speed;
-					if(params.left <= params.shiftLeftAt * -1) {
-						params.left = 0;
-						$ticker.append($ticker.children().get(0));
-						params.shiftLeftAt = $ticker.children().get(0).offsetWidth;
-					}
-					
-					$ticker.css('left', params.left + 'px');
-					params.runId = setTimeout(arguments.callee, settings.interval);
-					
-					$.fn.jStockTicker.settings[settings.tickerID] = params;
-				}
-				
-				function stopTicker() {
-					var params = $.fn.jStockTicker.settings[settings.tickerID];
-					if (params.runId)
-						clearTimeout(params.runId);
-					
-					params.runId = null;
-					$.fn.jStockTicker.settings[settings.tickerID] = params;
-				}
-				
-				function updateTicker() {			
-					stopTicker();
-					startTicker();
-				}
-				
-				$ticker.hover(stopTicker,startTicker);		
-				startTicker();
-			};
- 
-			$.fn.jStockTicker.settings = {};
-			$.fn.jStockTicker.defaults = {
-				tickerID :null,
-				url :null,
-				speed :1,
-				interval :20
-			};
-		})(jQuery);
+		
     </script>
 	<script type="text/javascript">
-		$(window).load(function () {
-            StockPriceTicker();
-            setInterval(function() {StockPriceTicker();} , 60000);
-        });
-        function StockPriceTicker() {
-            var Symbol = "", CompName = "", Price = "", ChnageInPrice = "", PercentChnageInPrice = ""; 
-            var CNames = " ^FTSE,HSBA.L,SL.L,BATS.L,BLND.L,FLG.L,RBS.L,RMG.L,VOD.L,GOOG,YHOO,MSFT,SIRI,AMAT,FB,WYNN";
-            var flickerAPI = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + CNames + "%22)&env=store://datatables.org/alltableswithkeys";
-            var StockTickerHTML = "";
-            
-            var StockTickerXML = $.get(flickerAPI, function(xml) {
-                $(xml).find("quote").each(function () {
-                    Symbol = $(this).attr("symbol");
-                    $(this).find("Name").each(function () {
-                        CompName = $(this).text();
-                    });
-                    $(this).find("LastTradePriceOnly").each(function () {
-                        Price = $(this).text();
-                    });
-                    $(this).find("Change").each(function () {
-                        ChnageInPrice = $(this).text();
-                    });
-                    $(this).find("PercentChange").each(function () {
-                        PercentChnageInPrice = $(this).text();
-                    });
-                    
-                    var PriceClass = "GreenText", PriceIcon="up_green";
-                    if(parseFloat(ChnageInPrice) < 0) { PriceClass = "RedText"; PriceIcon="down_red"; }
-                    StockTickerHTML = StockTickerHTML + "<span class='" + PriceClass + "'>";
-                    StockTickerHTML = StockTickerHTML + "<span class='quote'>" + CompName + " (" + Symbol + ")</span> ";
-                    
-                    StockTickerHTML = StockTickerHTML + parseFloat(Price).toFixed(2) + " ";
-                    StockTickerHTML = StockTickerHTML + "<span class='" + PriceIcon + "'></span>" + parseFloat(Math.abs(ChnageInPrice)).toFixed(2) + " (";
-                    StockTickerHTML = StockTickerHTML + parseFloat( Math.abs(PercentChnageInPrice.split('%')[0])).toFixed(2) + "%)</span>";
-                });
-				
-                $("#dvStockTicker").html(StockTickerHTML);
-                $("#dvStockTicker").jStockTicker({interval: 30, speed: 3});
-            });
-        }
+		
     </script>
 </head>
 <body>
@@ -346,7 +62,7 @@ $(function () {
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Financial Portfolio </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html"><h1>Financial Portfolio</h1></a>
       
       <!--/.nav-collapse --> 
     </div>
@@ -359,10 +75,10 @@ $(function () {
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="/"><span>Dashboard</span> </a> </li>
-        <li><a href="/stats"><span>Analysis</span> </a> </li>
-        <li><a href="/aboutus"><span>About Us</span> </a></li>
-        <li><a href="/login"><span>Login</span> </a> </li>
+        <li class="active"><a href="/"><span><h2><small>Dashboard</small></h2></span> </a> </li>
+        <li><a href="/stats"><span><h2><small>Analysis</small></h2></span> </a> </li>
+        <li><a href="/aboutus"><span><h2><small>About Us</small></h2></span> </a></li>
+        <li><a href="/login"><span><h2><small>Login</small></h2></span> </a> </li>
 		<li>
 		<!-- Place this tag in your head or just before your close body tag. -->
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -371,10 +87,10 @@ $(function () {
 		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
 		</li>
 		<li>
-		<div class="fb-share-button" data-href="http://financialportfolio-env.elasticbeanstalk.com/" data-layout="button"></div>
+		<div class="fb-share-button" data-href="http://stockwatchers.me/" data-layout="button"></div>
 		</li>
 		<li>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://financialportfolio-env.elasticbeanstalk.com/" data-count="none">Tweet</a>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://stockwatchers.me/" data-count="none">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 		</li>
 		<li>
@@ -393,18 +109,19 @@ new google.translate.TranslateElement({pageLanguage: 'en', layout: google.transl
   <!-- /subnavbar-inner --> 
 </div>
 <center>
-<div id="StockTickerContainer" style="height: 32px; line-height: 32px; overflow: hidden;">
+	<div id="StockTickerContainer">
         <div id='dvStockTicker' class='stockTicker'>
         </div>
     </div>
- <div class="col-md-4">
-            <div id="custom-search-input">
-                <div class="input-group col-md-12" style="align:center">
-                    <input type="text" id="cName" class="form-control input-lg" placeholder="Search Stocks,Check price" />
-                  
-                </div>
-            </div></div>
-            </center>
+	<div class="col-md-2 col-md-offset-5">
+    <div id="custom-search-input">
+        <div id="stocksearch" class="input-group col-md-12" >
+            <input type="text" id="cName" class="form-control input-lg" placeholder="Search Stocks,Check price" />
+          
+        </div>
+    </div>
+    </div>
+</center>
 <!-- /subnavbar -->
 
 <div class="main">
@@ -414,7 +131,7 @@ new google.translate.TranslateElement({pageLanguage: 'en', layout: google.transl
         <div class="span6">
           <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Today's Stats for NASDAQ</h3>
+              <h3> Today's Stats for NASDAQ </h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
@@ -425,7 +142,7 @@ new google.translate.TranslateElement({pageLanguage: 'en', layout: google.transl
                     <div class="stat"> Value<br><br> <span class="value" id ="currentvalue"></span> </div>
                     <!-- .stat -->
                     
-                    <div class="stat"> Change<br> <br><span class="value" id ="change"></span><img style="margin" id="change_img"></div>
+                    <div class="stat"> Change<br> <br><span class="value" id ="change"></span><img id="change_img"></div>
                     <!-- .stat -->
                     
                     <div class="stat">Day's High<br><br> <span class="value" id ="high"></span> </div>
@@ -467,7 +184,7 @@ new google.translate.TranslateElement({pageLanguage: 'en', layout: google.transl
             <div class="widget-content">
               <ul class="news-items">
           
-                <a href=""><img src="http://money.cnn.com/.element/img/8.0/data/feargreed/1.png"></a>
+                <a href=""><img src="http://money.cnn.com/.element/img/8.0/data/feargreed/1.png" alt="emotions not available!!!"></a>
               </ul>
             </div>
             <!-- /widget-content --> 
@@ -501,7 +218,7 @@ new google.translate.TranslateElement({pageLanguage: 'en', layout: google.transl
             <script src="http://code.highcharts.com/stock/highstock.js"></script>
 <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
 
-              <div id="containerr" style="height: 400px; min-width: 310px"></div>
+              <div id="containerr"></div>
               <!-- /area-chart --> 
             </div>
             <!-- /widget-content --> 
@@ -595,6 +312,7 @@ new google.translate.TranslateElement({pageLanguage: 'en', layout: google.transl
 <script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/base.js"></script> 
+<script src="js/indexbase.js"></script> 
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenLite.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/utils/Draggable.min.js"></script>

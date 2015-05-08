@@ -36,7 +36,7 @@
 <script>
 function getProfile()
 {
-	document.myForm.action = "/users/landing";
+	document.myForm.action = "/users/portfolio";
 	document.myForm.method = "POST";
 	document.myForm.submit();
 
@@ -61,6 +61,32 @@ function getProfile()
     .bubbleChart1 svg{
       background: #000000;
     }
+    
+    .ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    padding: 0;
+    margin-top: 2px;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	}
+	.ui-autocomplete > li {
+	  padding: 3px 20px;
+	}
+	.ui-autocomplete > li.ui-state-focus {
+	  background-color: #DDD;
+	}
+	.ui-helper-hidden-accessible {
+	  display: none;
+	}
   </style>
 <script type="text/javascript">
 $(function () {
@@ -285,7 +311,7 @@ $(function () {
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="/userhome"><span>Home</span> </a> </li>
+        <li class="active"><a href="#"><span>Home</span> </a> </li>
         <li><a href="/stats"><span>Analysis</span> </a> </li>
         <li><div id='x' onclick='getProfile()'><span>Portfolio</span></div></li>
         <li><a href="/financialadvisor"><span>Call Advisor</span> </a> </li>
@@ -304,7 +330,7 @@ $(function () {
     </div>
  <div class="col-md-4">
             <div id="custom-search-input">
-                <div class="input-group col-md-12" style="align:center">
+                <div class="input-group col-md-12" style="align:center; margin-top:20px; margin-bottom:30px;">
                     <input type="text" id="cName" class="form-control input-lg" placeholder="Search Stocks,Check price" />
                   
                 </div>
@@ -448,7 +474,7 @@ $(function () {
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-            <div id = "tweets">
+            <div id = "carTweets">
             </div>
               
             </div>

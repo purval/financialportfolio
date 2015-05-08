@@ -10,6 +10,7 @@ var express = require('express')
   , dataloader = require('./routes/dataloader')
   , http = require('http')
   , path = require('path')
+  , sm = require('sitemap')
   , finance = require('./routes/finance');
 
 var WebSocketServer = require('websocket').server;
@@ -29,7 +30,27 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+	var str = '<?xml version="1.0" encoding="UTF-8"?>';
+		str += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
+		str += 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"';
+		str += 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9';
+		str += 'http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
 
+		str += '<url><loc>http://stockwatchers.me/</loc><priority>1.00</priority></url>';
+		str += '<url><loc>http://stockwatchers.me/stats</loc><priority>0.80</priority></url>';
+		str += '<url><loc>http://stockwatchers.me/login</loc><priority>0.80</priority></url>';
+		str += '<url><loc>http://stockwatchers.me/signup</loc><priority>0.64</priority></url></urlset>';
+    if ('/robots.txt' == req.url) {
+        res.type('text/plain')
+        res.send("User-agent: *\nDisallow: /");
+    } else if('/sitemap.xml' == req.url){
+    	res.type('application/xml')
+        res.send(str);
+    }else {
+        next();
+    }
+});
 // development only
 if ('development' === app.get('env')) {
   app.use(express.errorHandler());
@@ -76,6 +97,7 @@ app.post('/users/delete/:email',users.delete_user);
 app.post('/users/add_watchlist/:userid/:symbol',users.addwatchlist);
 app.post('/users/get_watchlist/:userid',users.getWatchList);
 app.post('/users/landing',users.loginAuthentication1);
+app.post('/users/portfolio',users.loginAuthentication2);
 
 
 //websockets

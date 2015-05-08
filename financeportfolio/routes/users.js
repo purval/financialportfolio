@@ -64,6 +64,34 @@ exports.loginAuthentication1 = function(req, res){
         	if(rows[0].password === input.password)
         		{
         		row_main = rows;
+             res.render('userhome',{page_title:"Customers - Node.js",data:rows, error:""});
+        		}
+        	else
+        		{
+        		res.render('login',{page_title:"Customers - Node.js",error:"password is not correct"});
+        		}
+        	}    
+	});
+};
+
+exports.loginAuthentication2 = function(req, res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	var connection=getConnection();
+	var sqlQuery = "SELECT * FROM user WHERE email = '"+input.email+"' ";
+	
+	connection.query(sqlQuery, function(err, rows, fields) {
+		if(err)
+        {   console.log("Error Selecting : %s ",err );}
+     
+        else if(rows.length === 0)
+        	{
+        	 res.render('login',{page_title:"Customers - Node.js",error:"username or password is not correct"});
+        	}
+        else
+        	{
+        	if(rows[0].password === input.password)
+        		{
+        		row_main = rows;
              res.render('landing',{page_title:"Customers - Node.js",data:rows, error:""});
         		}
         	else

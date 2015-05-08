@@ -1,0 +1,122 @@
+
+#stocksearch{
+	align:center; 
+	margin-top:20px; 
+	margin-bottom:30px;
+}
+.vertical .carousel-inner {
+  height: 100%;
+}
+
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+     -moz-transition: 0.6s ease-in-out top;
+      -ms-transition: 0.6s ease-in-out top;
+       -o-transition: 0.6s ease-in-out top;
+          transition: 0.6s ease-in-out top;
+}
+
+.carousel.vertical .active {
+  top: 0;
+}
+
+.carousel.vertical .next {
+  top: 400px;
+}
+
+.carousel.vertical .prev {
+  top: -400px;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+  top: 0;
+}
+
+.carousel.vertical .active.left {
+  top: -400px;
+}
+
+.carousel.vertical .active.right {
+  top: 400px;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}
+
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    padding: 0;
+    margin-top: 2px;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: #DDD;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+#containerr{
+	height: 400px; 
+	min-width: 310px;
+}
+
+div.stockTicker
+{
+	font-size: 18px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+div.stockTicker span.quote
+{
+	margin: 0;
+	font-weight: bold;
+	color: #000;
+	padding: 0 5px 0 10px;
+}
+.GreenText
+{
+	color: Green;
+}
+.RedText
+{
+	color: Red;
+}
+.up_green
+{
+	background: url(http://www.codescratcher.com/wp-content/uploads/2014/11/up.gif) no-repeat left center;
+	padding-left: 10px;
+	margin-right: 5px;
+}
+.down_red
+{
+	background: url(http://www.codescratcher.com/wp-content/uploads/2014/11/down.gif) no-repeat left center;
+	padding-left: 10px;
+	margin-right: 5px;
+}
+
+#StockTickerContainer{
+	height: 32px; 
+	line-height: 32px; 
+	overflow: hidden;
+}
+#styleremove{
+	width:100%;
+}
